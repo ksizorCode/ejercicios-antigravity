@@ -1,0 +1,69 @@
+/* 📜 Estilos Retro - Brújula Imperial */
+
+:root {
+    --brass: #b5a642;
+    --dark-wood: #3d2b1f;
+    --parchment: #f4e4bc;
+    --needle-red: #b91c1c;
+}
+
+/* Efecto de pergamino envejecido */
+#parchment {
+    background-image: 
+        radial-gradient(circle at 50% 50%, transparent 60%, rgba(61, 43, 31, 0.1) 100%),
+        url('https://www.transparenttextures.com/patterns/old-map.png'); /* Textura sutil */
+    box-shadow: 0 0 100px rgba(0,0,0,0.5) inset, 20px 20px 60px rgba(0,0,0,0.8);
+}
+
+/* Tipografía de cuerpo */
+body {
+    font-family: 'IM Fell English', serif;
+}
+
+/* Estilo del disco de la brújula */
+#compass-disk {
+    /* Gradiente para dar efecto metálico de latón */
+    background: radial-gradient(circle at 30% 30%, #4a2e19, #1a0f0a);
+    box-shadow: 
+        0 0 20px rgba(0,0,0,1),
+        inset 0 0 50px rgba(181, 166, 66, 0.2);
+    border-image: linear-gradient(to bottom right, #b5a642, #5a4e1a, #b5a642) 1;
+}
+
+/* Aguja con animación de oscilación natural */
+#compass-needle {
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animación de "vibración" de la aguja para realismo */
+@keyframes needle-jitter {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(0.5deg); }
+    75% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+#compass-needle > div {
+    animation: needle-jitter 0.1s infinite;
+}
+
+/* Botón retro */
+#start-compass {
+    box-shadow: 0 4px 0 #1a0f0a;
+}
+
+#start-compass:active {
+    box-shadow: 0 0px 0 #1a0f0a;
+    transform: translateY(4px);
+}
+
+/* Estilos para móviles */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    #compass-disk {
+        width: 250px;
+        height: 250px;
+    }
+}

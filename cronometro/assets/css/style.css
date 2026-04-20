@@ -1,0 +1,60 @@
+/* 🎨 Custom Glassmorphism Effect */
+.glass {
+    background: rgba(15, 23, 42, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* 🚀 Button Transitions & Hover Effects */
+.control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#startStopBtn.running {
+    background-color: #ef4444; /* Red-500 */
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+}
+
+/* 🚩 Lap Item Animation */
+.lap-item {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 📜 Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
+
+/* 📱 Safe Area for PWA */
+@supports (padding: env(safe-area-inset-bottom)) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos Pro | Cronómetro Moderno</title>
+    <!-- 🌈 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 🎨 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 🍦 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 🛠️ Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- 📱 PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+</head>
+<body class="bg-slate-950 text-white font-['Outfit'] min-h-screen flex items-center justify-center p-4 overflow-hidden">
+
+    <!-- 🌟 Background Elements -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/20 blur-[120px] rounded-full"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full"></div>
+
+    <!-- 🕒 Main Container -->
+    <main class="relative z-10 w-full max-w-md">
+        
+        <!-- 📱 Glassmorphism Card -->
+        <div class="glass border border-white/10 rounded-[2.5rem] p-8 shadow-2xl backdrop-blur-xl">
+            
+            <!-- Header -->
+            <header class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent italic tracking-tight">
+                    CHRONOS PRO
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Precisión absoluta en tus manos ⚡</p>
+            </header>
+
+            <!-- ⏲️ Stopwatch Display -->
+            <div class="flex flex-col items-center justify-center mb-10">
+                <div id="display" class="font-['JetBrains_Mono'] text-6xl font-bold tracking-tighter tabular-nums text-white drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                    00:00:00<span class="text-2xl text-indigo-400">.00</span>
+                </div>
+            </div>
+
+            <!-- 🎮 Controls -->
+            <div class="flex items-center justify-around gap-4 mb-8">
+                <!-- Lap Button -->
+                <button id="lapBtn" disabled class="control-btn bg-white/5 hover:bg-white/10 text-white p-5 rounded-full transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-flag text-xl"></i>
+                </button>
+
+                <!-- Start/Stop Button -->
+                <button id="startStopBtn" class="control-btn bg-indigo-600 hover:bg-indigo-500 text-white p-8 rounded-full shadow-[0_0_30px_rgba(79,70,229,0.4)] transition-all transform active:scale-90 scale-110">
+                    <i id="playIcon" class="fa-solid fa-play text-2xl ml-1"></i>
+                </button>
+
+                <!-- Reset Button -->
+                <button id="resetBtn" class="control-btn bg-white/5 hover:bg-red-500/20 text-white p-5 rounded-full transition-all">
+                    <i class="fa-solid fa-rotate-left text-xl"></i>
+                </button>
+            </div>
+
+            <!-- 🚩 Laps Container -->
+            <div id="lapsContainer" class="max-h-[250px] overflow-y-auto pr-2 custom-scrollbar opacity-0 translate-y-4 transition-all duration-500">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-500 uppercase tracking-widest px-4 mb-3">
+                    <span>Vuelta</span>
+                    <span>Lap Time</span>
+                    <span>Total</span>
+                </div>
+                <div id="lapsList" class="space-y-2">
+                    <!-- Laps will be injected here -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Info -->
+        <p class="text-center mt-6 text-slate-500 text-xs tracking-widest uppercase">
+            &copy; 2026 Antigravity Academy • <span class="text-indigo-400 font-bold">PWA Ready</span>
+        </p>
+    </main>
+
+    <!-- 🧪 Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/pwa.js"></script>
+</body>
+</html>

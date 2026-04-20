@@ -1,0 +1,22 @@
+{
+  "name": "Chronos Pro",
+  "short_name": "Chronos",
+  "description": "El cronómetro moderno de alta precisión para profesionales.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://picsum.photos/id/175/192/192",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://picsum.photos/id/175/512/512",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

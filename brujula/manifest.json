@@ -1,0 +1,21 @@
+{
+  "name": "Brújula Imperial Retro",
+  "short_name": "Brújula",
+  "description": "Una brújula antigua que apunta al norte de verdad.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#3d2b1f",
+  "theme_color": "#b5a642",
+  "icons": [
+    {
+      "src": "https://picsum.photos/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

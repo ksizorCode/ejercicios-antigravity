@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brújula del Navegante | Retro PWA 🧭</title>
+    
+    <!-- Meta etiquetas para SEO y PWA -->
+    <meta name="description" content="Una brújula digital con estética retro que apunta al norte real. Funciona como PWA.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3d2b1f">
+    
+    <!-- Tailwind CSS para el sistema de diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts para toque retro -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#1a0f0a] min-h-screen flex flex-col items-center justify-center p-4 selection:bg-[#b5a642] selection:text-white">
+
+    <!-- Fondo de pergamino con textura -->
+    <div id="parchment" class="relative w-full max-w-lg aspect-[3/4] bg-[#f4e4bc] shadow-2xl rounded-sm border-[8px] border-[#3d2b1f] flex flex-col items-center p-8 overflow-hidden">
+        
+        <!-- Adorno de esquina -->
+        <div class="absolute top-2 left-2 text-[#3d2b1f] opacity-40 text-4xl"><i class="fas fa-scroll"></i></div>
+        <div class="absolute bottom-2 right-2 text-[#3d2b1f] opacity-40 text-4xl transform rotate-180"><i class="fas fa-scroll"></i></div>
+
+        <!-- Título con fuente elegante -->
+        <header class="text-center mb-8">
+            <h1 class="font-['Cinzel'] text-4xl text-[#3d2b1f] border-b-2 border-[#b5a642] pb-2 font-bold uppercase tracking-wider">
+                Brújula Imperial
+            </h1>
+            <p class="font-['IM_Fell_English'] italic text-[#5a3e2b] mt-2 text-lg">
+                Guiando tu camino desde 2026
+            </p>
+        </header>
+
+        <!-- Contenedor de la Brújula -->
+        <div class="relative flex-1 flex items-center justify-center w-full">
+            
+            <!-- Disco de la Brújula -->
+            <div id="compass-disk" class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full border-[12px] border-[#b5a642] bg-[#3d2b1f] shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out">
+                
+                <!-- Marcas de grados y puntos cardinales -->
+                <div class="absolute inset-4 rounded-full border-2 border-[#b5a642] opacity-30"></div>
+                
+                <!-- Punto NORTE -->
+                <div class="absolute top-2 left-1/2 -translate-x-1/2 font-['Cinzel'] text-4xl text-red-600 font-bold drop-shadow-lg">N</div>
+                <!-- Punto SUR -->
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 font-['Cinzel'] text-3xl text-[#f4e4bc] font-bold">S</div>
+                <!-- Punto ESTE -->
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 font-['Cinzel'] text-3xl text-[#f4e4bc] font-bold">E</div>
+                <!-- Punto OESTE -->
+                <div class="absolute left-4 top-1/2 -translate-y-1/2 font-['Cinzel'] text-3xl text-[#f4e4bc] font-bold">W</div>
+
+                <!-- Aguja de la Brújula -->
+                <div id="compass-needle" class="absolute inset-0 flex items-center justify-center">
+                    <div class="relative w-2 h-full py-4">
+                        <!-- Parte Norte (Roja) -->
+                        <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[120px] border-b-red-700 absolute top-4 left-1/2 -translate-x-1/2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"></div>
+                        <!-- Parte Sur (Negra/Brass) -->
+                        <div class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[120px] border-t-[#b5a642] absolute bottom-4 left-1/2 -translate-x-1/2 drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"></div>
+                        
+                        <!-- Perno central -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-[#b5a642] rounded-full shadow-lg border-2 border-[#1a0f0a] z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón para iniciar sensores (iOS requiere gesto) -->
+        <div class="mt-8 z-20">
+            <button id="start-compass" class="bg-[#3d2b1f] text-[#f4e4bc] px-8 py-3 font-['Cinzel'] text-xl rounded-sm border-2 border-[#b5a642] hover:bg-[#b5a642] hover:text-[#3d2b1f] transition-all transform hover:scale-105 active:scale-95 shadow-xl">
+                <i class="fas fa-location-arrow mr-2"></i> Calibrar Brújula
+            </button>
+        </div>
+
+        <!-- Footer informativo -->
+        <footer class="mt-4 text-[#5a3e2b] font-['IM_Fell_English'] text-sm text-center opacity-70">
+            Manten el dispositivo plano para mayor precisión
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Registro del Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('✅ Service Worker registrado', reg))
+                .catch(err => console.error('❌ Error al registrar SW', err));
+        }
+    </script>
+</body>
+</html>
