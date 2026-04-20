@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Ejercicios | Antigravity 🚀</title>
+    
+    <!-- Meta etiquetas -->
+    <meta name="description" content="Centro de mando de los ejercicios de desarrollo web de Antigravity.">
+    <link rel="icon" href="https://fav.farm/🚀">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100-screen;
+            overflow-x: hidden;
+        }
+
+        /* Fondo animado de orbes */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(10%, 10%); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center py-12 px-4">
+
+    <!-- Orbes de fondo -->
+    <div class="orb w-[500px] h-[500px] bg-purple-600/20 top-[-100px] left-[-100px]"></div>
+    <div class="orb w-[400px] h-[400px] bg-blue-600/20 bottom-[-50px] right-[-50px]" style="animation-delay: -5s;"></div>
+
+    <main class="w-full max-w-6xl">
+        
+        <!-- Cabecera -->
+        <header class="text-center mb-16 space-y-4">
+            <h1 class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400 leading-tight">
+                Hub de Ejercicios
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl font-light max-w-2xl mx-auto">
+                Explora el ecosistema de aplicaciones creadas por <span class="text-purple-400 font-semibold">Antigravity</span>. Tecnología, diseño y funcionalidad en un solo lugar.
+            </p>
+        </header>
+
+        <!-- Contenedor Grid -->
+        <div id="exercise-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cargando... -->
+            <div class="col-span-full text-center py-20 opacity-50 italic">
+                Cargando proyectos desde el hiperespacio...
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 text-slate-500 text-sm font-light">
+        © 2026 Antigravity Development Studio • ✨ Powered by GSAP & Tailwind
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/proyectos.js"></script>
+    <script>
+        /**
+         * 📂 Lógica de carga dinámica
+         */
+        function renderExercises() {
+            const grid = document.getElementById('exercise-grid');
+            
+            try {
+                const exercises = LISTADO_PROYECTOS; // Usamos el objeto definido en proyectos.js
+                
+                grid.innerHTML = ''; // Limpiar mensaje de carga
+
+                exercises.forEach((ex, index) => {
+                    const card = `
+                        <a href="${ex.ruta}" target="_self" class="glass-card rounded-3xl p-8 flex flex-col group cursor-pointer">
+                            <div class="text-5xl mb-6 transform group-hover:scale-125 transition-transform duration-300">
+                                ${ex.emoji}
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">
+                                ${ex.titulo}
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                ${ex.descripcion}
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-auto">
+                                ${ex.tags.map(tag => `<span class="tag text-slate-300">${tag}</span>`).join('')}
+                            </div>
+                            <div class="mt-6 pt-6 border-t border-white/5 flex items-center text-purple-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                                Explorar Proyecto <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </div>
+                        </a>
+                    `;
+                    grid.innerHTML += card;
+                });
+
+            } catch (error) {
+                console.error('Error visualizando el listado:', error);
+                grid.innerHTML = `
+                    <div class="col-span-full bg-red-500/10 border border-red-500/20 p-8 rounded-2xl text-center text-red-400">
+                        <i class="fas fa-exclamation-triangle text-3xl mb-4"></i>
+                        <p>Error crítico al visualizar los proyectos.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Iniciar renderizado
+        window.addEventListener('DOMContentLoaded', renderExercises);
+    </script>
+</body>
+</html>

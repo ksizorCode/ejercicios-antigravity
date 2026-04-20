@@ -16,3 +16,4 @@ picsum.photos para fotografías
 
 Añade comentarios en el código de forma estructurada y sencilla.
 
+actualiza al archivo listado.json con el ejercicio de los ejercicios o proyectos que se vallan añadiendo al repositorio de ejercicios manteniendo la estructura original del json

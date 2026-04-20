@@ -1,0 +1,65 @@
+/* 🔐 Estilos Security Dark - Password Shield */
+
+:root {
+    --blue-glow: rgba(37, 99, 235, 0.4);
+}
+
+body {
+    background-color: #050505;
+}
+
+/* Efecto de resplandor para el contenedor principal */
+main {
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Estilo personalizado para el Slider */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--blue-glow);
+    border: 2px solid #fff;
+    margin-top: -7px;
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--blue-glow);
+    border: 2px solid #fff;
+}
+
+/* Animación de la contraseña al generarse */
+.pass-animate {
+    animation: flicker 0.3s ease-out;
+}
+
+@keyframes flicker {
+    0% { opacity: 0; transform: scale(0.95); }
+    50% { opacity: 0.5; transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Estilos de los checkboxes */
+input[type="checkbox"] {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Vibración en errores (ej: todos los checks desactivados) */
+.shake {
+    animation: shakeAnim 0.4s ease-in-out;
+}
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Shield | Generador Seguro 🔑🛡️</title>
+    
+    <!-- Meta etiquetas -->
+    <meta name="description" content="Generador de contraseñas ultra seguro y configurable. PWA Ready.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#050505] text-[#e0e0e0] min-h-screen flex items-center justify-center p-4 font-['Outfit']">
+
+    <!-- Fondo de malla cibernética -->
+    <div class="fixed inset-0 pointer-events-none opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+
+    <main class="relative z-10 w-full max-w-md bg-[#0a0a0a] rounded-3xl p-8 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,1)]">
+        
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600/20 rounded-2xl mb-4 border border-blue-500/30">
+                <i class="fas fa-shield-halved text-3xl text-blue-500"></i>
+            </div>
+            <h1 class="text-3xl font-bold tracking-tight text-white mb-2">Password Shield</h1>
+            <p class="text-slate-500 text-sm">Generación segura de grado militar</p>
+        </header>
+
+        <!-- Pantalla de la Contraseña -->
+        <div class="relative group mb-8">
+            <div id="password-display" class="w-full bg-[#111] p-6 rounded-2xl border border-white/5 text-center font-['JetBrains_Mono'] text-xl sm:text-2xl text-blue-400 break-all min-h-[80px] flex items-center justify-center transition-all group-hover:border-blue-500/30 group-hover:bg-[#151515]">
+                ••••••••••
+            </div>
+            <button id="copy-btn" class="absolute -right-2 -top-2 bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-xl shadow-lg transition-all transform hover:scale-110 active:scale-95 flex items-center justify-center" title="Copiar al portapapeles">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+
+        <!-- Controles de Configuración -->
+        <div class="space-y-6">
+            
+            <!-- Longitud -->
+            <div class="space-y-3">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-slate-400">Longitud del escudo</span>
+                    <span id="length-value" class="text-blue-500 font-bold font-['JetBrains_Mono']">12</span>
+                </div>
+                <input type="range" id="length-slider" min="6" max="32" value="12" class="w-full h-1.5 bg-[#222] rounded-lg appearance-none cursor-pointer accent-blue-600">
+            </div>
+
+            <!-- Opciones -->
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Mayúsculas -->
+                <label class="flex items-center justify-between p-4 rounded-xl bg-[#111] border border-white/5 cursor-pointer hover:bg-[#151515] transition-all group">
+                    <span class="text-sm text-slate-300 group-hover:text-white">Mayúsculas (A-Z)</span>
+                    <input type="checkbox" id="uppercase" checked class="w-5 h-5 accent-blue-600 bg-transparent">
+                </label>
+                <!-- Minúsculas -->
+                <label class="flex items-center justify-between p-4 rounded-xl bg-[#111] border border-white/5 cursor-pointer hover:bg-[#151515] transition-all group">
+                    <span class="text-sm text-slate-300 group-hover:text-white">Minúsculas (a-z)</span>
+                    <input type="checkbox" id="lowercase" checked class="w-5 h-5 accent-blue-600 bg-transparent">
+                </label>
+                <!-- Números -->
+                <label class="flex items-center justify-between p-4 rounded-xl bg-[#111] border border-white/5 cursor-pointer hover:bg-[#151515] transition-all group">
+                    <span class="text-sm text-slate-300 group-hover:text-white">Números (0-9)</span>
+                    <input type="checkbox" id="numbers" checked class="w-5 h-5 accent-blue-600 bg-transparent">
+                </label>
+                <!-- Símbolos -->
+                <label class="flex items-center justify-between p-4 rounded-xl bg-[#111] border border-white/5 cursor-pointer hover:bg-[#151515] transition-all group">
+                    <span class="text-sm text-slate-300 group-hover:text-white">Símbolos (!@#$)</span>
+                    <input type="checkbox" id="symbols" class="w-5 h-5 accent-blue-600 bg-transparent">
+                </label>
+            </div>
+
+            <!-- Botón Generar -->
+            <button id="generate-btn" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white py-5 rounded-2xl font-bold uppercase tracking-widest text-sm shadow-xl shadow-blue-900/20 transition-all transform active:scale-95 flex items-center justify-center gap-3 mt-4">
+                <i class="fas fa-rotate"></i> Generar Contraseña
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <p class="mt-8 text-center text-xs text-slate-600">
+            No guardamos tus datos. Todo queda en tu navegador.
+        </p>
+
+    </main>
+
+    <!-- Notificación de Copiado -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-2xl opacity-0 transition-opacity pointer-events-none flex items-center gap-2">
+        <i class="fas fa-check-circle"></i> ¡Copiado con éxito!
+    </div>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        // PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('🛡️ Shield PWA Ready'))
+                .catch(err => console.log('❌ Shield Offline Error', err));
+        }
+    </script>
+</body>
+</html>
