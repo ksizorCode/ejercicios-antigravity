@@ -49,3 +49,21 @@ function timeToString(time) {
 
 ## 📱 ¿Qué es una PWA?
 Es como darle superpoderes a tu web. Con un archivo llamado `manifest.json` y un `service worker`, hacemos que el navegador entienda que esto puede ser una aplicación real con su icono en el escritorio. 🌟
+
+## 📐 Mejorando la UX: Desactivar el Zoom 📱
+
+En aplicaciones tipo PWA que tienen botones sobre los que se pulsa muy rápido (como en un cronómetro para marcar vueltas), es común que el móvil intente hacer "hacer zoom" por error (el famoso doble tap).
+
+Para evitar esto y que nuestra web se sienta como una **App Nativa**, usamos esta etiqueta en el `<head>` de nuestro `index.html`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+```
+
+¿Qué hace esto? 🕵️‍♂️
+1. `width=device-width`: Ajusta el ancho al dispositivo.
+2. `initial-scale=1.0`: Empieza con zoom normal.
+3. `maximum-scale=1.0`: No deja que el zoom sea mayor.
+4. `user-scalable=no`: Bloquea la posibilidad de que el usuario haga zoom manualmente.
+
+¡Ahora tu cronómetro será mucho más estable en dispositivos móviles y parecerá una aplicación instalada de verdad! 🚀⚡

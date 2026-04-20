@@ -12,7 +12,8 @@ cronometro/
 │       ├── app.js         # Lógica principal del cronómetro
 │       └── pwa.js         # Registro del Service Worker
 ├── prompts/
-│   └── prompt_01.md       # Historial de prompts
+│   ├── prompt_01.md       # Historial de prompts inicial
+│   └── prompt_02.md       # Mejora de UX: Bloqueo de zoom
 ├── apuntes.md             # Documentación didáctica para alumnos
 ├── readme.md              # Resumen técnico (este archivo)
 ├── index.html             # Estructura principal
@@ -31,6 +32,7 @@ cronometro/
 2.  **Diseño UI**: Implementación de fondos degradados y tarjetas translúcidas.
 3.  **Desarrollo JS**: Creación de la lógica de tiempo basada en `Date.now()` para máxima precisión.
 4.  **Optimización PWA**: Configuración del manifiesto y estrategias de caché.
+5.  **Ajuste de Experiencia**: Desactivación del zoom en móviles para evitar comportamientos accidentales al pulsar botones rápidamente.
 
 ---
 ✨ *Desarrollado con ❤️ por el Profesor Antigravity* ✨
