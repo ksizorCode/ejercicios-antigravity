@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPTLS Space Edition 🖖🦎</title>
+    
+    <!-- Meta etiquetas para SEO y PWA -->
+    <meta name="description" content="El mejor juego de Piedra, Papel, Tijera, Lagarto, Spock. PWA con rankings y animaciones.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a0b2e">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#0f051d] text-white min-h-screen flex flex-col items-center p-4 selection:bg-[#ff00ff] selection:text-white overflow-x-hidden">
+
+    <!-- Nebulosa de fondo -->
+    <div class="fixed inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_50%_50%,#4b0082,transparent_70%)] z-0"></div>
+
+    <main class="relative z-10 w-full max-w-2xl flex flex-col items-center">
+        
+        <!-- Cabecera / Score -->
+        <header class="w-full bg-[#1a0b2e]/80 backdrop-blur-md rounded-2xl p-6 border border-[#ff00ff]/30 shadow-[0_0_30px_rgba(255,0,255,0.1)] flex justify-between items-center mb-8">
+            <div>
+                <h1 class="font-['Orbitron'] text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff00ff] to-[#00ffff]">
+                    PPTLS<span class="text-xs ml-1 opacity-70">SPACE</span>
+                </h1>
+                <p class="font-['Rajdhani'] text-xs uppercase tracking-widest text-[#00ffff]/70">Galactic Tournament</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="text-center group">
+                    <p class="text-[10px] uppercase text-[#ff00ff]">Tú</p>
+                    <p id="player-score" class="font-['Orbitron'] text-3xl font-bold group-hover:scale-110 transition-transform">0</p>
+                </div>
+                <div class="text-center group">
+                    <p class="text-[10px] uppercase text-[#00ffff]">IA</p>
+                    <p id="cpu-score" class="font-['Orbitron'] text-3xl font-bold group-hover:scale-110 transition-transform">0</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Área de Batalla -->
+        <section id="battle-area" class="w-full flex flex-col items-center mb-8 min-h-[300px] justify-center">
+            <div class="flex justify-center items-center gap-8 mb-6">
+                <!-- Elección Jugador -->
+                <div id="player-choice-display" class="w-24 h-24 sm:w-32 sm:h-32 bg-[#1a0b2e] rounded-full border-4 border-[#ff00ff] flex items-center justify-center text-5xl sm:text-7xl shadow-[0_0_20px_rgba(255,0,255,0.4)] transition-all duration-300 transform scale-0">
+                    ❔
+                </div>
+                
+                <div id="vs-text" class="font-['Orbitron'] text-xl font-bold text-white/20">VS</div>
+
+                <!-- Elección CPU -->
+                <div id="cpu-choice-display" class="w-24 h-24 sm:w-32 sm:h-32 bg-[#1a0b2e] rounded-full border-4 border-[#00ffff] flex items-center justify-center text-5xl sm:text-7xl shadow-[0_0_20px_rgba(0,255,255,0.4)] transition-all duration-300 transform scale-0">
+                    🤖
+                </div>
+            </div>
+            
+            <!-- Mensaje de Resultado -->
+            <div id="result-message" class="text-center font-['Orbitron'] text-2xl font-bold min-h-[40px] mb-4">
+                <!-- Se llena con JS -->
+            </div>
+        </section>
+
+        <!-- Selector de Acciones -->
+        <section class="grid grid-cols-5 gap-2 sm:gap-4 w-full mb-12">
+            <!-- Piedra -->
+            <button onclick="play('piedra')" class="choice-btn group bg-[#1a0b2e] p-4 rounded-xl border border-white/10 hover:border-[#ff00ff] hover:shadow-[0_0_15px_rgba(255,0,255,0.3)] transition-all flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl mb-2 group-hover:scale-125 transition-transform">🪨</span>
+                <span class="text-[10px] sm:text-xs font-['Rajdhani'] uppercase tracking-widest opacity-50">Piedra</span>
+            </button>
+            <!-- Papel -->
+            <button onclick="play('papel')" class="choice-btn group bg-[#1a0b2e] p-4 rounded-xl border border-white/10 hover:border-[#00ffff] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl mb-2 group-hover:scale-125 transition-transform">📄</span>
+                <span class="text-[10px] sm:text-xs font-['Rajdhani'] uppercase tracking-widest opacity-50">Papel</span>
+            </button>
+            <!-- Tijera -->
+            <button onclick="play('tijera')" class="choice-btn group bg-[#1a0b2e] p-4 rounded-xl border border-white/10 hover:border-[#ff00ff] hover:shadow-[0_0_15px_rgba(255,0,255,0.3)] transition-all flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl mb-2 group-hover:scale-125 transition-transform">✂️</span>
+                <span class="text-[10px] sm:text-xs font-['Rajdhani'] uppercase tracking-widest opacity-50">Tijera</span>
+            </button>
+            <!-- Lagarto -->
+            <button onclick="play('lagarto')" class="choice-btn group bg-[#1a0b2e] p-4 rounded-xl border border-white/10 hover:border-[#00ffff] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl mb-2 group-hover:scale-125 transition-transform">🦎</span>
+                <span class="text-[10px] sm:text-xs font-['Rajdhani'] uppercase tracking-widest opacity-50">Lagarto</span>
+            </button>
+            <!-- Spock -->
+            <button onclick="play('spock')" class="choice-btn group bg-[#1a0b2e] p-4 rounded-xl border border-white/10 hover:border-[#ff00ff] hover:shadow-[0_0_15px_rgba(255,0,255,0.3)] transition-all flex flex-col items-center">
+                <span class="text-3xl sm:text-4xl mb-2 group-hover:scale-125 transition-transform">🖖</span>
+                <span class="text-[10px] sm:text-xs font-['Rajdhani'] uppercase tracking-widest opacity-50">Spock</span>
+            </button>
+        </section>
+
+        <!-- Ranking -->
+        <section class="w-full bg-[#1a0b2e]/50 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+            <h2 class="font-['Orbitron'] text-xl font-bold mb-4 flex items-center">
+                <i class="fas fa-trophy text-[#ffd700] mr-2"></i> Hall of Fame
+            </h2>
+            <div class="overflow-hidden">
+                <table class="w-full text-left font-['Rajdhani']">
+                    <thead>
+                        <tr class="text-[#00ffff] border-b border-white/10">
+                            <th class="py-2">Pos</th>
+                            <th class="py-2">Hito</th>
+                            <th class="py-2 text-right">Ptos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-list">
+                        <!-- Se llena con JS -->
+                    </tbody>
+                </table>
+            </div>
+            <button onclick="resetGame()" class="mt-6 w-full py-2 border border-[#ff00ff]/30 text-[#ff00ff] rounded-lg hover:bg-[#ff00ff]/10 transition-colors text-xs font-bold uppercase tracking-widest">
+                Reiniciar Galaxia
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-white/30 font-['Rajdhani'] text-xs py-4">
+        © 2026 PPTLS Space Consortium • PWA Edition
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script>
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('✅ Galaxia Offline Lista'))
+                .catch(err => console.log('❌ Error en el hiperespacio', err));
+        }
+    </script>
+</body>
+</html>

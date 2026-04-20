@@ -1,0 +1,93 @@
+/* 🌌 Estilos Galácticos - PPTLS Space Edition */
+
+:root {
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --deep-space: #0f051d;
+}
+
+body {
+    background-attachment: fixed;
+    /* Estrellas animadas */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 80px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 110px 10px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 150px 150px, #eee, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 100s linear infinite;
+}
+
+@keyframes stars {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* Animaciones de Entrada de Elección */
+.choice-pop {
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Efecto de Victoria */
+.win-glow {
+    animation: winPulse 1.5s infinite;
+}
+
+@keyframes winPulse {
+    0% { box-shadow: 0 0 10px var(--neon-cyan); }
+    50% { box-shadow: 0 0 30px var(--neon-cyan), 0 0 50px var(--neon-cyan); }
+    100% { box-shadow: 0 0 10px var(--neon-cyan); }
+}
+
+/* Efecto de Derrota */
+.lose-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Botones de Jugada */
+.choice-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.choice-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.choice-btn:hover::after {
+    transform: translateX(100%);
+}
+
+/* Ranking Table styles */
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+#ranking-list tr {
+    transition: all 0.3s ease;
+}
+
+#ranking-list tr:hover {
+    background-color: rgba(255, 0, 255, 0.05);
+    transform: translateX(5px);
+}
