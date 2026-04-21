@@ -16,7 +16,7 @@ brujula/
 │   │   └── style.css      # Estilos retro y animaciones
 │   └── js/
 │       └── app.js         # Lógica de sensores y rotación
-├── prompts/
+├── _prompts/
 │   └── prompt_01.md       # Historial de peticiones
 ├── index.html             # Estructura principal
 ├── manifest.json          # Configuración PWA

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéDex Pro | ¡Hazte con todos! ⚡</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ef4444">
+
+    <!-- Tailwind & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-['Outfit']">
+
+    <!-- Fondo Pokéball animado -->
+    <div class="pokeball-bg"></div>
+
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-white/10 px-4 py-4">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center border-4 border-slate-900 shadow-lg shadow-red-500/30 animate-pulse">
+                    <div class="w-4 h-4 bg-white rounded-full border-2 border-slate-900"></div>
+                </div>
+                <h1 class="text-2xl font-black tracking-tighter font-['Orbitron'] bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white">POKÉDEX PRO</h1>
+            </div>
+            
+            <div class="relative w-full sm:w-64">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                <input type="text" id="search-input" placeholder="Buscar Pokémon..." 
+                    class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all placeholder:text-slate-600">
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Pokémon Grid -->
+        <div id="pokemon-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <!-- Loader Skeleton -->
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Botón Cargar Más -->
+        <div class="flex justify-center mt-12 mb-20">
+            <button id="load-more" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-2xl shadow-xl shadow-red-600/20 transition-all active:scale-95">
+                <i class="fas fa-plus mr-2"></i>CARGAR MÁS
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal Detalle -->
+    <div id="modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md" id="modal-overlay"></div>
+        <div class="relative bg-slate-900 border border-white/10 w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-2xl transform transition-all">
+            <button id="close-modal" class="absolute top-6 right-6 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Se rellena con JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

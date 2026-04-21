@@ -99,34 +99,52 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/proyectos.js"></script>
     <script>
         /**
-         * 📂 Lógica de carga dinámica
+         * 🚀 Lógica de carga dinámica desde JSON
+         * Esta función se encarga de ir a buscar el archivo 'listado.json',
+         * procesar los datos y dibujarlos en nuestra rejilla (grid).
          */
-        function renderExercises() {
+        async function renderExercises() {
             const grid = document.getElementById('exercise-grid');
             
             try {
-                const exercises = LISTADO_PROYECTOS; // Usamos el objeto definido en proyectos.js
+                // 📡 Realizamos la petición al archivo JSON
+                // Usamos await para esperar a que el archivo se descargue
+                const response = await fetch('listado.json');
                 
-                grid.innerHTML = ''; // Limpiar mensaje de carga
+                // Si la respuesta no es correcta, lanzamos un error
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
 
+                // 📦 Convertimos la respuesta en un objeto JavaScript (Array)
+                const exercises = await response.json();
+                
+                // ✨ Limpiamos el mensaje de carga antes de renderizar
+                grid.innerHTML = ''; 
+
+                // 🔄 Iteramos sobre cada ejercicio para crear su tarjeta visual
                 exercises.forEach((ex, index) => {
                     const card = `
                         <a href="${ex.ruta}" target="_self" class="glass-card rounded-3xl p-8 flex flex-col group cursor-pointer">
+                            <!-- Icono con efecto de escala al pasar el ratón -->
                             <div class="text-5xl mb-6 transform group-hover:scale-125 transition-transform duration-300">
                                 ${ex.emoji}
                             </div>
+                            <!-- Título con cambio de color interactivo -->
                             <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">
                                 ${ex.titulo}
                             </h3>
+                            <!-- Descripción del proyecto -->
                             <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
                                 ${ex.descripcion}
                             </p>
+                            <!-- Etiquetas o tags del proyecto -->
                             <div class="flex flex-wrap gap-2 mt-auto">
                                 ${ex.tags.map(tag => `<span class="tag text-slate-300">${tag}</span>`).join('')}
                             </div>
+                            <!-- Enlace visual de interacción -->
                             <div class="mt-6 pt-6 border-t border-white/5 flex items-center text-purple-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                                 Explorar Proyecto <i class="fas fa-arrow-right ml-2 text-xs"></i>
                             </div>
@@ -136,17 +154,18 @@
                 });
 
             } catch (error) {
+                // ⚠️ En caso de error, mostramos un mensaje amigable al usuario
                 console.error('Error visualizando el listado:', error);
                 grid.innerHTML = `
                     <div class="col-span-full bg-red-500/10 border border-red-500/20 p-8 rounded-2xl text-center text-red-400">
                         <i class="fas fa-exclamation-triangle text-3xl mb-4"></i>
-                        <p>Error crítico al visualizar los proyectos.</p>
+                        <p>Ups! No hemos podido cargar los proyectos estelares. Inténtalo de nuevo más tarde. 🛸</p>
                     </div>
                 `;
             }
         }
 
-        // Iniciar renderizado
+        // 🎬 Iniciamos el renderizado cuando el DOM esté listo
         window.addEventListener('DOMContentLoaded', renderExercises);
     </script>
 </body>

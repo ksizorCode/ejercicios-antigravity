@@ -1,0 +1,82 @@
+/* --- 🎨 NewsReader RSS Styles --- */
+
+:root {
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --accent: #38bdf8;
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Estilos de los Tabs de Categoría */
+.category-tab.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+}
+
+/* Efecto Glassmorphism para las tarjetas de noticias */
+.news-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px border var(--glass-border);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.news-card:active {
+    transform: scale(0.98);
+}
+
+/* Animaciones de entrada */
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradiente de las imágenes para que el texto encima se vea bien */
+.image-overlay {
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 60%);
+}
+
+/* Estilos para el texto de la descripción (máximo 3 líneas) */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Shimmer effect para carga (placeholder) */
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(30, 41, 59, 0.2) 25%,
+        rgba(51, 65, 85, 0.4) 50%,
+        rgba(30, 41, 59, 0.2) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Ajustes para notch en iPhone y barras de sistema */
+body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}

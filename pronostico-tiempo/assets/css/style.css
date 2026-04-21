@@ -1,0 +1,66 @@
+/* 🎨 Estilos personalizados para el Pronóstico del Tiempo */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --accent-color: #6366f1;
+}
+
+body {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    min-height: 100vh;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+}
+
+/* 🧊 Efecto Glassmorphism */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
+}
+
+/* ✨ Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 🌡️ Gradiente de temperatura */
+.temp-text {
+    background: linear-gradient(to right, #6EE7B7, #3B82F6, #9333EA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* 🔍 Estilo del Input */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.custom-button {
+    background: linear-gradient(45deg, #6366f1, #a855f7);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.custom-button:active {
+    transform: scale(0.95);
+}

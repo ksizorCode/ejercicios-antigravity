@@ -26,5 +26,40 @@
         "ruta": "password_generator/index.html",
         "emoji": "🔑",
         "tags": ["PWA", "Seguridad", "JS"]
+    },
+    {
+        "titulo": "Clima Aura",
+        "descripcion": "Consulta el tiempo local o de cualquier ciudad con geolocalización inteligente.",
+        "ruta": "pronostico-tiempo/index.html",
+        "emoji": "🌤️",
+        "tags": ["API", "Geolocalización", "JS"]
+    },
+    {
+        "titulo": "NewsReader RSS",
+        "descripcion": "Lector de noticias minimalista y elegante con soporte PWA.",
+        "ruta": "noticias-rss-pwa/index.html",
+        "emoji": "📰",
+        "tags": ["PWA", "API", "RSS"]
+    },
+    {
+        "titulo": "PokéDex Pro",
+        "descripcion": "Enciclopedia Pokémon futurista con datos en tiempo real.",
+        "ruta": "pokedex-pwa/index.html",
+        "emoji": "👾",
+        "tags": ["API", "PWA", "Pokémon"]
+    },
+    {
+        "titulo": "Springfield Directory",
+        "descripcion": "Directorio interactivo de personajes de Los Simpson con paginación.",
+        "ruta": "simpsons-pwa/index.html",
+        "emoji": "🍩",
+        "tags": ["PWA", "Paginación", "Simpsons"]
+    },
+    {
+        "titulo": "Emoji Match Kids",
+        "descripcion": "Divertido juego de memoria para niños con emoticonos y colores pastel.",
+        "ruta": "juego-parejas-emojis/index.html",
+        "emoji": "🍦",
+        "tags": ["Juego", "PWA", "Infantil"]
     }
 ]

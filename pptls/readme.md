@@ -17,7 +17,7 @@ pptls/
 │   │   └── style.css      # Animaciones, fondos y efectos neón
 │   └── js/
 │       └── app.js         # Motor del juego y gestión de ranking
-├── prompts/
+├── _prompts/
 │   └── prompt_01.md       # Registro de peticiones
 ├── index.html             # Esqueleto y UI
 ├── manifest.json          # Metadatos PWA

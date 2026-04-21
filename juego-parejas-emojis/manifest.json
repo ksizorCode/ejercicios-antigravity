@@ -1,0 +1,21 @@
+{
+  "name": "Emoji Match Kids",
+  "short_name": "EmojiMatch",
+  "description": "Juego de memoria divertido para explorar con emoticonos",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fdf2f8",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/emojimatch/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/emojimatch/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

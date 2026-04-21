@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Aura 🌦️ | Pronóstico Local Inteligente</title>
+    <!-- 🎨 Estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Meta SEO -->
+    <meta name="description" content="Consulta el clima local con diseño premium y datos precisos en tiempo real.">
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <!-- 🌌 Main Container -->
+    <div class="w-full max-w-md">
+        
+        <!-- 🏔️ Header / Search -->
+        <div class="mb-8 text-center">
+            <h1 class="text-4xl font-extrabold mb-4 tracking-tight">
+                Clima <span class="text-indigo-400">Aura</span> ✨
+            </h1>
+            
+            <div class="flex gap-2 mb-4">
+                <div class="relative flex-1">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="cityInput" placeholder="Busca tu ciudad..." 
+                           class="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+                </div>
+                <button id="searchBtn" class="custom-button px-6 rounded-2xl font-bold flex items-center justify-center">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <button id="geoBtn" class="w-full bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20 text-indigo-300 py-3 rounded-2xl font-medium transition-all flex items-center justify-center gap-2">
+                <i class="fas fa-location-crosshairs"></i>
+                Usar mi ubicación actual
+            </button>
+        </div>
+
+        <!-- 🌡️ Weather Content Card -->
+        <main id="weatherContainer" class="glass-card rounded-[2.5rem] p-8 relative overflow-hidden">
+            
+            <!-- 🌀 Loading State -->
+            <div id="loadingState" class="hidden py-20 text-center animate-pulse">
+                <i class="fas fa-spinner fa-spin text-5xl text-indigo-400 mb-4"></i>
+                <p class="text-indigo-200 font-medium">Consultando a los satélites... 🛰️</p>
+            </div>
+
+            <!-- 🌤️ Dynamic Content -->
+            <div id="weatherContent" class="hidden">
+                <!-- Se rellena con JS -->
+            </div>
+
+            <!-- 🏙️ Background Image (Optional/Decorative) -->
+            <img src="https://picsum.photos/seed/weather/800/600" alt="Background" 
+                 class="absolute inset-0 -z-10 opacity-10 object-cover w-full h-full">
+        </main>
+
+        <!-- 🔗 Footer Link -->
+        <footer class="mt-8 text-center text-gray-400 text-sm">
+            <a href="../index.html" class="hover:text-indigo-400 transition-colors">
+                <i class="fas fa-chevron-left mr-1"></i> Volver al Hub de Proyectos
+            </a>
+        </footer>
+
+    </div>
+
+    <!-- 🧠 Lógica JS -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

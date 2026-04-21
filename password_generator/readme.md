@@ -17,7 +17,7 @@ password_generator/
 │   │   └── style.css      # Tema Dark Security y animaciones
 │   └── js/
 │       └── app.js         # Motor de generación y portapapeles
-├── prompts/
+├── _prompts/
 │   └── prompt_01.md       # Historial de peticiones
 ├── index.html             # Interfaz de usuario
 ├── manifest.json          # Configuración PWA

@@ -11,7 +11,7 @@ cronometro/
 │   └── js/
 │       ├── app.js         # Lógica principal del cronómetro
 │       └── pwa.js         # Registro del Service Worker
-├── prompts/
+├── _prompts/
 │   ├── prompt_01.md       # Historial de prompts inicial
 │   └── prompt_02.md       # Mejora de UX: Bloqueo de zoom
 ├── apuntes.md             # Documentación didáctica para alumnos

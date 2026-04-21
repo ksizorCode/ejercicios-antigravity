@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Match | Juego de Memoria 🍦</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fdf2f8">
+
+    <!-- Tailwind & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-pink-50 text-slate-800 min-h-screen font-['Fredoka'] flex flex-col items-center justify-center p-4">
+
+    <!-- Decoración de fondo -->
+    <div class="fixed -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50"></div>
+    <div class="fixed -bottom-10 -right-10 w-60 h-60 bg-yellow-200 rounded-full blur-3xl opacity-50"></div>
+
+    <header class="text-center mb-8">
+        <h1 class="text-4xl md:text-6xl font-bold text-pink-500 drop-shadow-sm flex items-center justify-center gap-3">
+            <span class="animate-bounce">🍦</span> Emoji Match <span class="animate-bounce"
+                style="animation-delay: 0.2s">🍭</span>
+        </h1>
+        <div class="mt-4 flex justify-center gap-6">
+            <div class="bg-white/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-sm border border-pink-100">
+                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Movimientos</p>
+                <p id="moves" class="text-2xl font-bold text-pink-600">0</p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md px-6 py-2 rounded-2xl shadow-sm border border-pink-100">
+                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Tiempo</p>
+                <p id="timer" class="text-2xl font-bold text-pink-600">00:00</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full max-w-md aspect-square">
+        <div id="game-board" class="grid grid-cols-4 gap-3 h-full">
+            <!-- Las cartas se generan por JS -->
+        </div>
+    </main>
+
+    <footer class="mt-10">
+        <button id="restart-btn"
+            class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-10 rounded-[2rem] shadow-lg shadow-pink-500/30 transition-all active:scale-95 text-xl">
+            <i class="fas fa-redo-alt mr-2"></i> REINICIAR
+        </button>
+    </footer>
+
+    <!-- Overlay de Victoria -->
+    <div id="win-screen"
+        class="fixed inset-0 z-50 bg-white/90 backdrop-blur-xl hidden flex flex-col items-center justify-center p-8 text-center animate-in">
+        <div class="text-8xl mb-6">🏆</div>
+        <h2 class="text-5xl font-bold text-pink-500 mb-2">¡LO LOGRASTE!</h2>
+        <p class="text-xl text-slate-500 mb-8">Has encontrado todas las parejas.</p>
+        <div class="flex gap-4 mb-8">
+            <div class="bg-pink-50 p-4 rounded-3xl">
+                <p class="text-xs font-bold text-pink-400 uppercase">Movimientos</p>
+                <p id="final-moves" class="text-3xl font-bold text-pink-600">0</p>
+            </div>
+            <div class="bg-pink-50 p-4 rounded-3xl">
+                <p class="text-xs font-bold text-pink-400 uppercase">Tiempo</p>
+                <p id="final-time" class="text-3xl font-bold text-pink-600">00:00</p>
+            </div>
+        </div>
+        <button onclick="location.reload()"
+            class="bg-sky-400 hover:bg-sky-500 text-white font-bold py-4 px-12 rounded-[2rem] shadow-xl shadow-sky-400/20 transition-all text-2xl">
+            JUGAR DE NUEVO
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

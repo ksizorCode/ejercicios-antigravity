@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NewsReader RSS | Mundo en vivo 📰</title>
+    
+    <!-- Enlace al manifiesto PWA -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-['Outfit'] overflow-x-hidden">
+
+    <!-- Fondo dinámico con gradientes suaves -->
+    <div class="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-sky-900/40 via-slate-900 to-slate-900"></div>
+    <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 shadow-lg shadow-sky-500/20"></div>
+
+    <!-- Header Principal -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/60 border-b border-slate-700/50 px-4 py-4">
+        <div class="max-w-2xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/20">
+                    <i class="fas fa-newspaper text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">NewsReader</h1>
+                    <p class="text-[10px] text-sky-400 uppercase tracking-widest font-semibold">Tecnología RSS v1.0</p>
+                </div>
+            </div>
+            <button id="refresh-btn" class="w-10 h-10 rounded-full bg-slate-800/50 border border-slate-700/50 flex items-center justify-center hover:bg-slate-700 transition-all active:scale-90">
+                <i class="fas fa-sync-alt text-slate-300"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navegación de Categorías (Tabs) -->
+    <nav class="sticky top-[73px] z-40 backdrop-blur-md bg-slate-900/40 border-b border-slate-700/30 overflow-x-auto no-scrollbar">
+        <div class="max-w-2xl mx-auto flex px-4 gap-2 py-3">
+            <button data-feed="general" class="category-tab active px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 border border-transparent">
+                <i class="fas fa-globe-americas mr-2"></i>General
+            </button>
+            <button data-feed="tech" class="category-tab px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 border border-transparent text-slate-400 hover:text-white">
+                <i class="fas fa-microchip mr-2"></i>Tecnología
+            </button>
+            <button data-feed="sports" class="category-tab px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 border border-transparent text-slate-400 hover:text-white">
+                <i class="fas fa-running mr-2"></i>Deportes
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-2xl mx-auto px-4 py-6 mb-20 fade-in">
+        
+        <!-- Estado de carga -->
+        <div id="loader" class="hidden flex flex-col items-center justify-center py-20 gap-4">
+            <div class="w-12 h-12 border-4 border-sky-500/30 border-t-sky-500 rounded-full animate-spin"></div>
+            <p class="text-slate-400 animate-pulse text-sm">Sincronizando últimas noticias...</p>
+        </div>
+
+        <!-- Contenedor de Noticias -->
+        <div id="news-container" class="grid gap-6">
+            <!-- Las noticias se cargarán aquí dinámicamente -->
+        </div>
+
+    </main>
+
+    <!-- Barra de Estado Inferior (Look Mobile App) -->
+    <footer class="fixed bottom-0 left-0 w-full backdrop-blur-2xl bg-slate-900/80 border-t border-slate-800/50 py-3 px-6 z-50">
+        <div class="max-w-2xl mx-auto flex justify-around items-center">
+            <button class="flex flex-col items-center gap-1 text-sky-400">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-[10px] font-medium">Inicio</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors">
+                <i class="fas fa-bookmark text-lg"></i>
+                <span class="text-[10px] font-medium">Guardado</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-slate-500 hover:text-slate-300 transition-colors">
+                <i class="fas fa-cog text-lg"></i>
+                <span class="text-[10px] font-medium">Ajustes</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

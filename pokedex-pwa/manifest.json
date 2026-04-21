@@ -1,0 +1,21 @@
+{
+  "name": "PokéDex Pro",
+  "short_name": "PokéDex",
+  "description": "La enciclopedia Pokémon definitiva en tu bolsillo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#ef4444",
+  "icons": [
+    {
+      "src": "https://picsum.photos/seed/pokedex/192/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://picsum.photos/seed/pokedex/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

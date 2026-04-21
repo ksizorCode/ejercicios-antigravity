@@ -1,0 +1,21 @@
+{
+  "name": "Simpsonpedia",
+  "short_name": "Simpsonpedia",
+  "description": "La guía definitiva de personajes de Los Simpson",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFD90F",
+  "theme_color": "#009DDC",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3014/3014529.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3014/3014529.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
