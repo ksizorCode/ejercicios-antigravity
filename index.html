@@ -238,50 +238,99 @@
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 32px);
-            max-width: 360px;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
+            max-width: 480px;         /* 👈 Más ancho para 5 iconos */
+            height: 76px;
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
             border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 32px;
+            border-radius: 38px;
             z-index: 10;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 0 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            justify-content: space-around;   /* 👈 Distribuye equitativamente */
+            padding: 0 12px;
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.45),
+                inset 0 1px 0 rgba(255,255,255,0.2);
         }
 
-        /* 🔄 Botón refrescar wallpaper */
-        #btn-refresh-wallpaper {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        /* 🔘 Botones del dock (estilo general) */
+        .dock-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
             cursor: pointer;
-            font-size: 1rem;
+            border: none;
+            background: none;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            text-decoration: none;
+            padding: 0;
+        }
+
+        .dock-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        .dock-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* 🟣 Icono circular del dock */
+        .dock-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow:
+                0 3px 12px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.25);
+            transition: all 0.2s ease;
         }
 
-        #btn-refresh-wallpaper:hover {
-            background: rgba(255,255,255,0.3);
-            transform: rotate(180deg);
+        .dock-btn:hover .dock-icon {
+            background: rgba(255,255,255,0.30);
+            border-color: rgba(255,255,255,0.55);
         }
 
-        /* ⏰ Reloj en el dock */
-        #android-clock-dock {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-            flex: 1;
+        /* 🔵 Icono Hub con acento especial (morado) */
+        .dock-icon-hub {
+            background: rgba(139, 92, 246, 0.35);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow:
+                0 3px 16px rgba(139,92,246,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .dock-btn:hover .dock-icon-hub {
+            background: rgba(139, 92, 246, 0.55);
+        }
+
+        /* 🏷️ Etiqueta bajo icono del dock */
+        .dock-label {
+            font-size: 0.58rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
             text-align: center;
+        }
+
+        /* ⏰ Separador vertical entre iconos del dock */
+        .dock-divider {
+            width: 1px;
+            height: 36px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 2px;
         }
 
         /* 🔄 Animación de entrada para el escritorio */
@@ -377,14 +426,45 @@
             <!-- Los iconos se generan dinámicamente con JS -->
         </div>
 
-        <!-- ⏩ Dock inferior -->
+        <!-- ⏩ Dock inferior con 5 accesos rápidos -->
         <div id="android-dock">
-            <!-- Reloj central -->
-            <span id="android-clock-dock">--:--</span>
-            <!-- Botón refrescar wallpaper -->
-            <button id="btn-refresh-wallpaper" onclick="refreshWallpaper()" title="Nuevo fondo">
-                <i class="fas fa-sync-alt"></i>
+
+            <!-- 🏠 Botón VISTA HUB (antes era el toggle flotante) -->
+            <button class="dock-btn" onclick="toggleView()" title="Volver al Hub">
+                <div class="dock-icon dock-icon-hub">🚀</div>
+                <span class="dock-label">Hub</span>
             </button>
+
+            <!-- Separador -->
+            <div class="dock-divider"></div>
+
+            <!-- 📷 Icono Cámara (decorativo) -->
+            <a class="dock-btn" href="#" onclick="return false;" title="Cámara">
+                <div class="dock-icon">📷</div>
+                <span class="dock-label">Cámara</span>
+            </a>
+
+            <!-- 🎵 Icono Música (decorativo) -->
+            <a class="dock-btn" href="#" onclick="return false;" title="Música">
+                <div class="dock-icon">🎵</div>
+                <span class="dock-label">Música</span>
+            </a>
+
+            <!-- 🌐 Icono Navegador (decorativo) -->
+            <a class="dock-btn" href="#" onclick="return false;" title="Navegador">
+                <div class="dock-icon">🌐</div>
+                <span class="dock-label">Web</span>
+            </a>
+
+            <!-- Separador -->
+            <div class="dock-divider"></div>
+
+            <!-- 🔄 Botón cambiar wallpaper -->
+            <button class="dock-btn" onclick="refreshWallpaper()" title="Nuevo fondo">
+                <div class="dock-icon">🖼️</div>
+                <span class="dock-label">Fondo</span>
+            </button>
+
         </div>
 
     </div>
@@ -527,31 +607,34 @@
         // 🔀 TOGGLE: alterna entre vista Hub y Android
         // =============================================
         function toggleView() {
-            const hubView     = document.getElementById('hub-view');
-            const androidView = document.getElementById('android-view');
-            const footer      = document.querySelector('footer');
-            const toggleIcon  = document.getElementById('toggle-icon');
-            const toggleLabel = document.getElementById('toggle-label');
+            const hubView      = document.getElementById('hub-view');
+            const androidView  = document.getElementById('android-view');
+            const footer       = document.querySelector('footer');
+            const toggleBtn    = document.getElementById('btn-toggle-view'); // botón flotante
+            const toggleIcon   = document.getElementById('toggle-icon');
+            const toggleLabel  = document.getElementById('toggle-label');
 
             if (currentView === 'hub') {
-                // 📱 Cambiamos a vista Android
+                // 📱 Entramos en vista Android
                 currentView = 'android';
-                hubView.style.display     = 'none';
-                footer.style.display      = 'none';
-                androidView.style.display = 'block';
+                hubView.style.display      = 'none';
+                footer.style.display       = 'none';
+                androidView.style.display  = 'block';
+                // 🙈 Ocultamos el botón flotante: el dock tiene el botón de Hub
+                toggleBtn.style.display    = 'none';
                 document.body.classList.remove('flex', 'flex-col', 'items-center', 'py-12', 'px-4');
-                toggleIcon.textContent  = '🖥️';
-                toggleLabel.textContent = 'Vista Hub';
 
             } else {
-                // 🖥️ Volvemos a vista Hub
+                // 🖥️ Volvemos al Hub
                 currentView = 'hub';
-                androidView.style.display = 'none';
-                hubView.style.display     = 'block';
-                footer.style.display      = 'block';
+                androidView.style.display  = 'none';
+                hubView.style.display      = 'block';
+                footer.style.display       = 'block';
+                // 👁️ Volvemos a mostrar el botón flotante con estado Hub
+                toggleBtn.style.display    = 'flex';
+                toggleIcon.textContent     = '📱';
+                toggleLabel.textContent    = 'Vista Móvil';
                 document.body.classList.add('flex', 'flex-col', 'items-center', 'py-12', 'px-4');
-                toggleIcon.textContent  = '📱';
-                toggleLabel.textContent = 'Vista Móvil';
             }
         }
 
