@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub de Ejercicios | Antigravity 🚀</title>
     
-    <!-- Meta etiquetas -->
+    <!-- Meta etiquetas SEO -->
     <meta name="description" content="Centro de mando de los ejercicios de desarrollo web de Antigravity.">
     <link rel="icon" href="https://fav.farm/🚀">
     
@@ -19,15 +19,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* =============================================
+           🎨 ESTILOS GLOBALES
+        ============================================= */
         body {
             font-family: 'Outfit', sans-serif;
             background: #0f172a;
             color: #f8fafc;
-            min-height: 100-screen;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Fondo animado de orbes */
+        /* 🔮 Orbes flotantes de fondo (vista Hub) */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -38,9 +41,10 @@
 
         @keyframes move {
             from { transform: translate(-10%, -10%); }
-            to { transform: translate(10%, 10%); }
+            to   { transform: translate(10%, 10%); }
         }
 
+        /* 💎 Tarjeta glassmorphism */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
@@ -55,6 +59,7 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
+        /* 🏷️ Etiquetas / tags */
         .tag {
             background: rgba(255, 255, 255, 0.05);
             padding: 2px 10px;
@@ -64,15 +69,263 @@
             letter-spacing: 1px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* =============================================
+           📱 BOTÓN TOGGLE VISTA
+        ============================================= */
+        #btn-toggle-view {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(139, 92, 246, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            color: #c4b5fd;
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(139,92,246,0.3);
+        }
+
+        #btn-toggle-view:hover {
+            background: rgba(139, 92, 246, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(139,92,246,0.5);
+        }
+
+        /* =============================================
+           📱 VISTA ESCRITORIO ANDROID
+        ============================================= */
+        #android-view {
+            display: none;         /* Se activa con JS */
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            overflow: hidden;
+        }
+
+        /* 🖼️ Fondo aleatorio de picsum.photos */
+        #android-wallpaper {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Capa oscura sobre el fondo */
+        #android-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.35) 0%,
+                rgba(0,0,0,0.20) 40%,
+                rgba(0,0,0,0.55) 100%
+            );
+        }
+
+        /* 📶 Barra de estado superior (como Android) */
+        #android-statusbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            z-index: 10;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+        }
+
+        /* 📱 Grid de iconos del escritorio */
+        #android-grid {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            bottom: 90px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px 8px;
+            padding: 20px 16px;
+            overflow-y: auto;
+            align-content: start;
+            z-index: 10;
+        }
+
+        /* 📦 Cada icono de app */
+        .android-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.15s ease;
+        }
+
+        .android-icon:hover,
+        .android-icon:active {
+            transform: scale(0.92);
+        }
+
+        /* 🟣 Fondo del icono con efecto glassmorphism fuerte */
+        .android-icon-bg {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            /* 💎 Capa semitransparente sobre el wallpaper */
+            background: rgba(255, 255, 255, 0.15);
+            /* 🔮 Blur fuerte para desenfoque del fondo real */
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            /* ✨ Borde con brillo sutil */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            /* 🌑 Sombra interior + exterior para profundidad */
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .android-icon:hover .android-icon-bg {
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* 🏷️ Nombre de la app bajo el icono */
+        .android-icon-label {
+            font-size: 0.68rem;
+            font-weight: 500;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            max-width: 70px;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        /* 📍 Barra inferior tipo dock Android */
+        #android-dock {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 360px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 32px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 0 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        /* 🔄 Botón refrescar wallpaper */
+        #btn-refresh-wallpaper {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        #btn-refresh-wallpaper:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
+        }
+
+        /* ⏰ Reloj en el dock */
+        #android-clock-dock {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            flex: 1;
+            text-align: center;
+        }
+
+        /* 🔄 Animación de entrada para el escritorio */
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+
+        .android-icon {
+            animation: slideUp 0.4s ease both;
+        }
+
+        /* 🔄 Efecto de cambio de wallpaper */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .wallpaper-fade {
+            animation: fadeIn 0.8s ease;
+        }
+
     </style>
 </head>
 <body class="flex flex-col items-center py-12 px-4">
 
-    <!-- Orbes de fondo -->
+    <!-- =============================================
+         🔮 Orbes de fondo (solo vista Hub)
+    ============================================= -->
     <div class="orb w-[500px] h-[500px] bg-purple-600/20 top-[-100px] left-[-100px]"></div>
     <div class="orb w-[400px] h-[400px] bg-blue-600/20 bottom-[-50px] right-[-50px]" style="animation-delay: -5s;"></div>
 
-    <main class="w-full max-w-6xl">
+    <!-- =============================================
+         📱 BOTÓN TOGGLE - Cambia entre vistas
+    ============================================= -->
+    <button id="btn-toggle-view" onclick="toggleView()" title="Cambiar vista">
+        <span id="toggle-icon">📱</span>
+        <span id="toggle-label">Vista Móvil</span>
+    </button>
+
+    <!-- =============================================
+         🖥️ VISTA HUB (por defecto)
+    ============================================= -->
+    <main id="hub-view" class="w-full max-w-6xl">
         
         <!-- Cabecera -->
         <header class="text-center mb-16 space-y-4">
@@ -88,85 +341,246 @@
         <div id="exercise-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Cargando... -->
             <div class="col-span-full text-center py-20 opacity-50 italic">
-                Cargando proyectos desde el hiperespacio...
+                Cargando proyectos desde el hiperespacio... 🛸
             </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="mt-20 text-slate-500 text-sm font-light">
-        © 2026 Antigravity Development Studio • ✨ Powered by GSAP & Tailwind
+        © 2026 Antigravity Development Studio • ✨ Powered by Tailwind
     </footer>
 
-    <!-- Scripts -->
+    <!-- =============================================
+         📱 VISTA ESCRITORIO ANDROID
+    ============================================= -->
+    <div id="android-view">
+
+        <!-- 🖼️ Fondo (wallpaper) desde picsum.photos -->
+        <div id="android-wallpaper"></div>
+
+        <!-- 🌑 Capa oscura semitransparente -->
+        <div id="android-overlay"></div>
+
+        <!-- 📶 Barra de estado superior -->
+        <div id="android-statusbar">
+            <span id="android-time">--:--</span>
+            <span>Antigravity OS ✨</span>
+            <span>
+                <i class="fas fa-wifi mr-1"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+            </span>
+        </div>
+
+        <!-- 📱 Grid de iconos -->
+        <div id="android-grid">
+            <!-- Los iconos se generan dinámicamente con JS -->
+        </div>
+
+        <!-- ⏩ Dock inferior -->
+        <div id="android-dock">
+            <!-- Reloj central -->
+            <span id="android-clock-dock">--:--</span>
+            <!-- Botón refrescar wallpaper -->
+            <button id="btn-refresh-wallpaper" onclick="refreshWallpaper()" title="Nuevo fondo">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- =============================================
+         ⚙️ SCRIPTS
+    ============================================= -->
     <script>
-        /**
-         * 🚀 Lógica de carga dinámica desde JSON
-         * Esta función se encarga de ir a buscar el archivo 'listado.json',
-         * procesar los datos y dibujarlos en nuestra rejilla (grid).
-         */
-        async function renderExercises() {
-            const grid = document.getElementById('exercise-grid');
-            
+        // =============================================
+        // 📦 Estado global de la aplicación
+        // =============================================
+        let exercises = [];       // Lista de proyectos del JSON
+        let currentView = 'hub'; // Vista actual: 'hub' | 'android'
+
+        // 🎲 Semilla aleatoria para picsum (cambia en cada wallpaper)
+        let wallpaperSeed = Math.floor(Math.random() * 1000);
+
+        // =============================================
+        // 📡 CARGA DE DATOS desde listado.json
+        // =============================================
+        async function loadExercises() {
             try {
-                // 📡 Realizamos la petición al archivo JSON
-                // Usamos await para esperar a que el archivo se descargue
                 const response = await fetch('listado.json');
-                
-                // Si la respuesta no es correcta, lanzamos un error
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                exercises = await response.json();
 
-                // 📦 Convertimos la respuesta en un objeto JavaScript (Array)
-                const exercises = await response.json();
-                
-                // ✨ Limpiamos el mensaje de carga antes de renderizar
-                grid.innerHTML = ''; 
-
-                // 🔄 Iteramos sobre cada ejercicio para crear su tarjeta visual
-                exercises.forEach((ex, index) => {
-                    const card = `
-                        <a href="${ex.ruta}" target="_self" class="glass-card rounded-3xl p-8 flex flex-col group cursor-pointer">
-                            <!-- Icono con efecto de escala al pasar el ratón -->
-                            <div class="text-5xl mb-6 transform group-hover:scale-125 transition-transform duration-300">
-                                ${ex.emoji}
-                            </div>
-                            <!-- Título con cambio de color interactivo -->
-                            <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">
-                                ${ex.titulo}
-                            </h3>
-                            <!-- Descripción del proyecto -->
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-                                ${ex.descripcion}
-                            </p>
-                            <!-- Etiquetas o tags del proyecto -->
-                            <div class="flex flex-wrap gap-2 mt-auto">
-                                ${ex.tags.map(tag => `<span class="tag text-slate-300">${tag}</span>`).join('')}
-                            </div>
-                            <!-- Enlace visual de interacción -->
-                            <div class="mt-6 pt-6 border-t border-white/5 flex items-center text-purple-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                                Explorar Proyecto <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                            </div>
-                        </a>
-                    `;
-                    grid.innerHTML += card;
-                });
+                // Renderizamos ambas vistas con los datos cargados
+                renderHubView();
+                renderAndroidView();
 
             } catch (error) {
-                // ⚠️ En caso de error, mostramos un mensaje amigable al usuario
-                console.error('Error visualizando el listado:', error);
-                grid.innerHTML = `
+                console.error('❌ Error cargando listado.json:', error);
+                document.getElementById('exercise-grid').innerHTML = `
                     <div class="col-span-full bg-red-500/10 border border-red-500/20 p-8 rounded-2xl text-center text-red-400">
                         <i class="fas fa-exclamation-triangle text-3xl mb-4"></i>
-                        <p>Ups! No hemos podido cargar los proyectos estelares. Inténtalo de nuevo más tarde. 🛸</p>
+                        <p>¡Ups! No pudimos cargar los proyectos. 🛸</p>
                     </div>
                 `;
             }
         }
 
-        // 🎬 Iniciamos el renderizado cuando el DOM esté listo
-        window.addEventListener('DOMContentLoaded', renderExercises);
+        // =============================================
+        // 🖥️ RENDERIZAR VISTA HUB (tarjetas)
+        // =============================================
+        function renderHubView() {
+            const grid = document.getElementById('exercise-grid');
+            grid.innerHTML = '';
+
+            exercises.forEach((ex) => {
+                // Construimos cada tarjeta de proyecto
+                const card = `
+                    <a href="${ex.ruta}" target="_self" class="glass-card rounded-3xl p-8 flex flex-col group cursor-pointer">
+                        <!-- Emoji con efecto hover -->
+                        <div class="text-5xl mb-6 transform group-hover:scale-125 transition-transform duration-300">
+                            ${ex.emoji}
+                        </div>
+                        <!-- Título -->
+                        <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">
+                            ${ex.titulo}
+                        </h3>
+                        <!-- Descripción -->
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                            ${ex.descripcion}
+                        </p>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            ${ex.tags.map(tag => `<span class="tag text-slate-300">${tag}</span>`).join('')}
+                        </div>
+                        <!-- Enlace visual -->
+                        <div class="mt-6 pt-6 border-t border-white/5 flex items-center text-purple-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                            Explorar Proyecto <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </div>
+                    </a>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // =============================================
+        // 📱 RENDERIZAR VISTA ANDROID (iconos)
+        // =============================================
+        function renderAndroidView() {
+            const grid = document.getElementById('android-grid');
+            grid.innerHTML = '';
+
+            exercises.forEach((ex, index) => {
+                // Calculamos el delay de animación escalonado
+                const delay = index * 60;
+
+                // Cada icono es un enlace que abre el proyecto
+                const icon = `
+                    <a href="${ex.ruta}"
+                       target="_self"
+                       class="android-icon"
+                       style="animation-delay: ${delay}ms"
+                       title="${ex.titulo}">
+                        <!-- 🟣 Fondo redondeado del icono -->
+                        <div class="android-icon-bg">
+                            ${ex.emoji}
+                        </div>
+                        <!-- 🏷️ Nombre corto bajo el icono -->
+                        <span class="android-icon-label">${ex.titulo}</span>
+                    </a>
+                `;
+                grid.innerHTML += icon;
+            });
+
+            // Cargamos el wallpaper inicial
+            setWallpaper(wallpaperSeed);
+        }
+
+        // =============================================
+        // 🖼️ WALLPAPER: cargar imagen aleatoria de picsum
+        // =============================================
+        function setWallpaper(seed) {
+            const wallpaper = document.getElementById('android-wallpaper');
+            
+            // Generamos dimensiones según la pantalla
+            const w = window.innerWidth  || 800;
+            const h = window.innerHeight || 1200;
+
+            // URL de picsum con semilla fija para consistencia
+            const url = `https://picsum.photos/seed/${seed}/${w}/${h}`;
+
+            // Aplicamos el fondo con animación
+            wallpaper.style.backgroundImage = `url('${url}')`;
+            wallpaper.className = 'wallpaper-fade';
+
+            // Reiniciamos la clase para poder re-animar
+            setTimeout(() => wallpaper.className = '', 900);
+        }
+
+        // 🔄 Genera un nuevo wallpaper aleatorio
+        function refreshWallpaper() {
+            wallpaperSeed = Math.floor(Math.random() * 1000);
+            setWallpaper(wallpaperSeed);
+        }
+
+        // =============================================
+        // 🔀 TOGGLE: alterna entre vista Hub y Android
+        // =============================================
+        function toggleView() {
+            const hubView     = document.getElementById('hub-view');
+            const androidView = document.getElementById('android-view');
+            const footer      = document.querySelector('footer');
+            const toggleIcon  = document.getElementById('toggle-icon');
+            const toggleLabel = document.getElementById('toggle-label');
+
+            if (currentView === 'hub') {
+                // 📱 Cambiamos a vista Android
+                currentView = 'android';
+                hubView.style.display     = 'none';
+                footer.style.display      = 'none';
+                androidView.style.display = 'block';
+                document.body.classList.remove('flex', 'flex-col', 'items-center', 'py-12', 'px-4');
+                toggleIcon.textContent  = '🖥️';
+                toggleLabel.textContent = 'Vista Hub';
+
+            } else {
+                // 🖥️ Volvemos a vista Hub
+                currentView = 'hub';
+                androidView.style.display = 'none';
+                hubView.style.display     = 'block';
+                footer.style.display      = 'block';
+                document.body.classList.add('flex', 'flex-col', 'items-center', 'py-12', 'px-4');
+                toggleIcon.textContent  = '📱';
+                toggleLabel.textContent = 'Vista Móvil';
+            }
+        }
+
+        // =============================================
+        // ⏰ RELOJ en tiempo real para el escritorio
+        // =============================================
+        function updateClock() {
+            const now  = new Date();
+            const h    = String(now.getHours()).padStart(2, '0');
+            const m    = String(now.getMinutes()).padStart(2, '0');
+            const time = `${h}:${m}`;
+
+            // Actualizamos ambos elementos del reloj
+            const clockStatus = document.getElementById('android-time');
+            const clockDock   = document.getElementById('android-clock-dock');
+
+            if (clockStatus) clockStatus.textContent = time;
+            if (clockDock)   clockDock.textContent   = time;
+        }
+
+        // =============================================
+        // 🎬 INICIALIZACIÓN al cargar la página
+        // =============================================
+        window.addEventListener('DOMContentLoaded', () => {
+            loadExercises();   // Carga JSON y renderiza vistas
+            updateClock();     // Hora inicial inmediata
+            setInterval(updateClock, 30000); // Actualiza cada 30s
+        });
     </script>
+
 </body>
 </html>
