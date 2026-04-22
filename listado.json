@@ -79,7 +79,7 @@
     {
         "titulo": "Springfield Directory",
         "descripcion": "Directorio interactivo de personajes de Los Simpson con paginación.",
-        "ruta": "simpsonspedia/index.html",
+        "ruta": "simpsonpedia/index.html",
         "emoji": "🍩",
         "tags": [
             "PWA",
