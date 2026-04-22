@@ -4,62 +4,98 @@
         "descripcion": "Un cronómetro de alta precisión con estética 'glassmorphism' y funciones PWA.",
         "ruta": "cronometro/index.html",
         "emoji": "⏱️",
-        "tags": ["PWA", "Glassmorphism", "JS"]
+        "tags": [
+            "PWA",
+            "Glassmorphism",
+            "JS"
+        ]
     },
     {
         "titulo": "Brújula Imperial",
         "descripcion": "Brújula retro de latón y pergamino que apunta al Norte real mediante sensores.",
         "ruta": "brujula/index.html",
         "emoji": "🧭",
-        "tags": ["PWA", "Retro", "Sensores"]
+        "tags": [
+            "PWA",
+            "Retro",
+            "Sensores"
+        ]
     },
     {
         "titulo": "PPTLS Space Edition",
         "descripcion": "El mítico juego de Piedra, Papel, Tijera, Lagarto, Spock con estética neón.",
         "ruta": "pptls/index.html",
         "emoji": "🖖",
-        "tags": ["PWA", "Juego", "Animaciones"]
+        "tags": [
+            "PWA",
+            "Juego",
+            "Animaciones"
+        ]
     },
     {
         "titulo": "Password Shield",
         "descripcion": "Generador de contraseñas ultra seguro con configuración personalizada.",
         "ruta": "password_generator/index.html",
         "emoji": "🔑",
-        "tags": ["PWA", "Seguridad", "JS"]
+        "tags": [
+            "PWA",
+            "Seguridad",
+            "JS"
+        ]
     },
     {
         "titulo": "Clima Aura",
         "descripcion": "Consulta el tiempo local o de cualquier ciudad con geolocalización inteligente.",
         "ruta": "pronostico-tiempo/index.html",
         "emoji": "🌤️",
-        "tags": ["API", "Geolocalización", "JS"]
+        "tags": [
+            "API",
+            "Geolocalización",
+            "JS"
+        ]
     },
     {
         "titulo": "NewsReader RSS",
         "descripcion": "Lector de noticias minimalista y elegante con soporte PWA.",
         "ruta": "noticias-rss-pwa/index.html",
         "emoji": "📰",
-        "tags": ["PWA", "API", "RSS"]
+        "tags": [
+            "PWA",
+            "API",
+            "RSS"
+        ]
     },
     {
         "titulo": "PokéDex Pro",
         "descripcion": "Enciclopedia Pokémon futurista con datos en tiempo real.",
         "ruta": "pokedex-pwa/index.html",
         "emoji": "👾",
-        "tags": ["API", "PWA", "Pokémon"]
+        "tags": [
+            "API",
+            "PWA",
+            "Pokémon"
+        ]
     },
     {
         "titulo": "Springfield Directory",
         "descripcion": "Directorio interactivo de personajes de Los Simpson con paginación.",
-        "ruta": "simpsons-pwa/index.html",
+        "ruta": "simpsonspedia/index.html",
         "emoji": "🍩",
-        "tags": ["PWA", "Paginación", "Simpsons"]
+        "tags": [
+            "PWA",
+            "Paginación",
+            "Simpsons"
+        ]
     },
     {
         "titulo": "Emoji Match Kids",
         "descripcion": "Divertido juego de memoria para niños con emoticonos y colores pastel.",
         "ruta": "juego-parejas-emojis/index.html",
         "emoji": "🍦",
-        "tags": ["Juego", "PWA", "Infantil"]
+        "tags": [
+            "Juego",
+            "PWA",
+            "Infantil"
+        ]
     }
 ]
